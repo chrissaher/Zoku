@@ -1,0 +1,37 @@
+default_language_version:
+  # Update this to your project's specific python needs.
+  python: python3.10
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=100"]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.4.2"
+    hooks:
+      - id: ruff
+        args: ["--fix", "--show-fixes"]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
+    hooks:
+      # Markdown formatting.
+      - id: prettier
+        name: prettier_markdown
+        args: [--embedded-language-formatting=off, --prose-wrap=always]
+        types: [markdown]
+      # YAML formatting.
+      - id: prettier
+        name: prettier_yaml
+        # Set print-width to match Black's width for Python code.
+        args: [--prose-wrap=preserve, --print-width=89]
+        files: \.(yaml|yml)$
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+      - id: mypy
+        exclude: '(_pb2\.py$|\.pyi$)'

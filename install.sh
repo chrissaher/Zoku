@@ -11,6 +11,30 @@ set -o pipefail
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+# Check if KAGGLE_USERNAME and KAGGLE_API_KEY are set
+if [ -z "$KAGGLE_USERNAME" ] || [ -z "$KAGGLE_API_KEY" ]; then
+    echo "Error: Please make sure to create and run ~/.zokurc."
+    exit 1
+fi
+
+# Create ~/.zoku directory if it doesn't exist
+mkdir -p ~/.zoku
+
+# Create ~/.kaggle directory if it doesn't exist
+mkdir -p ~/.kaggle
+
+# Generate the JSON content
+json_content="{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_API_KEY\"}"
+
+# Save the JSON content to ~/.kaggle/kaggle.json
+echo "$json_content" > ~/.kaggle/kaggle.json
+
+# Restrict permissions of the kaggle.json file to owner read/write only
+chmod 600 ~/.kaggle/kaggle.json
+
+echo "Kaggle credentials have been successfully saved to ~/.kaggle/kaggle.json"
+
+
 # run these commands in a subshell so the environment doesn't affect the ability to detect if pyenv
 # has been set up properly in the user's environment later
 (

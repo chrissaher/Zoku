@@ -1,7 +1,7 @@
 from pathlib import Path
 from kaggle.api.kaggle_api_extended import KaggleApi
 
-from zoku.dataset.base import DefaultDataset
+from .base import DefaultDataset
 from zoku.common.commons import DATASET_CACHE_DIR
 
 

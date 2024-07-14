@@ -37,8 +37,3 @@ class KaggleDataset(DefaultDataset):
         api = KaggleApi()
         api.authenticate()
         api.dataset_download_files(self.name, path=download_dir, unzip=True)
-
-
-if __name__ == "__main__":
-    dataset = KaggleDataset("lantian773030", "pokemonclassification")
-    print("Done")

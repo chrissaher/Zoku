@@ -11,7 +11,8 @@ set -o pipefail
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
-DIR="$(dirname "$PARENT_DIR")"
+DIR="$( cd "$( dirname "$PARENT_DIR" )" >/dev/null 2>&1 && pwd )"
+# DIR="$(dirname "$PARENT_DIR")"
 
 # Create ~/.kaggle directory if it doesn't exist
 mkdir -p ~/.kaggle

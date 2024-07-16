@@ -6,7 +6,7 @@ from zoku.dataset.kaggledataset import KaggleDataset
 @pytest.mark.parametrize(
     "creator_name, dataset_name",
     [
-        ("lantian773030", "pokemonclassification"),
+        ("gorororororo23", "european-restaurant-reviews"),
         ("jiscecseaiml", "mental-health-dataset"),
     ],
 )
@@ -20,8 +20,3 @@ def test_download_from_kaggle(tmp_path, creator_name, dataset_name):
     expected_dataset_dir = tmp_path / creator_name / dataset_name
     assert expected_dataset_dir.exists(), True
     assert any(expected_dataset_dir.iterdir()), True
-
-
-if __name__ == "__main__":
-    dataset = KaggleDataset("lantian773030", "pokemonclassification")
-    print("Done")

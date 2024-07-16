@@ -10,8 +10,8 @@ set -o nounset
 set -o pipefail
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-DIR="$(dirname "$SCRIPT_DIR")"
-echo "$DIR"
+PARENT_DIR="$(dirname "$SCRIPT_DIR")"
+DIR="$(dirname "$PARENT_DIR")"
 
 # Create ~/.kaggle directory if it doesn't exist
 mkdir -p ~/.kaggle

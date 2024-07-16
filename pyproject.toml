@@ -12,6 +12,8 @@ kaggle = "^1.6.14"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
+sphinx = "^7.3.7"
+sphinx-autodoc-typehints = "^2.2.2"
 
 [build-system]
 requires = ["poetry-core"]

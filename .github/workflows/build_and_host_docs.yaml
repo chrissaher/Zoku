@@ -39,10 +39,6 @@ jobs:
           python -m pip install --upgrade pip
           bash .github/scripts/build_docs.sh
 
-      # - name: Generate documentation
-      #   run: |
-      #     poetry run sphinx-build -b html docs/source docs/build
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

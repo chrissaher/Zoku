@@ -12,7 +12,6 @@ set -o pipefail
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 DIR="$( cd "$( dirname "$PARENT_DIR" )" >/dev/null 2>&1 && pwd )"
-# DIR="$(dirname "$PARENT_DIR")"
 
 # Create ~/.kaggle directory if it doesn't exist
 mkdir -p ~/.kaggle
@@ -36,10 +35,12 @@ chmod 600 ~/.kaggle/kaggle.json
     eval "$(pyenv init --path)"
     # eval "$(pyenv init -)"
 
-    # # Notice: workaround for poetry issue: https://github.com/python-poetry/poetry/issues/8623
+    # Notice: workaround for poetry issue: https://github.com/python-poetry/poetry/issues/8623
     python3 -m poetry config keyring.enabled false
-    # # this needs to be sourced so we can pick up the new PATH with pyenv in it
+    # this needs to be sourced so we can pick up the new PATH with pyenv in it
     python3 -m poetry install --sync
-    # # pre-commit setup
+    # pre-commit setup
     python3 -m poetry run pre-commit install
+    # Generate docs
+    poetry run sphinx-build -b html docs/source docs/build
 )

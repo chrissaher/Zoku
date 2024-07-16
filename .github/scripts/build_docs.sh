@@ -9,8 +9,9 @@ set -o nounset
 # Return the value of the last (rightmost) command to exit with a non-zero status
 set -o pipefail
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-echo $DIR
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DIR="$(dirname "$SCRIPT_DIR")"
+echo "$DIR"
 
 # Create ~/.kaggle directory if it doesn't exist
 mkdir -p ~/.kaggle
